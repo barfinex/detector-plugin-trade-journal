@@ -2,7 +2,7 @@
   "name": "@barfinex/detector-plugin-trade-journal",
   "version": "0.0.0-development",
   "private": false,
-  "description": "Shared Detector Plugin trade-journal for Barfinex ecosystem",
+  "description": "Detector plugin Trade Journal for the Barfinex ecosystem. Provides trade logging, journaling, and lifecycle hooks for managing trading activity inside detectors.",
   "author": "Barfinex",
   "license": "MIT",
   "homepage": "https://github.com/barfinex/detector-plugin-trade-journal#readme",
@@ -23,6 +23,21 @@
     "clean": "rimraf dist",
     "release": "semantic-release"
   },
+  "keywords": [
+    "barfinex",
+    "detector",
+    "plugin",
+    "trade",
+    "journal",
+    "trade-journal",
+    "trading",
+    "logging",
+    "nestjs",
+    "nestjs-module",
+    "typescript",
+    "backtesting",
+    "analytics"
+  ],
   "devDependencies": {
     "typescript": "^5.6.0",
     "rimraf": "^5.0.0",
