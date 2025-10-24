@@ -5,5 +5,28 @@
     },
     "include": [
         "src"
+    ],
+    "references": [
+        {
+            "path": "../../../libs/types"
+        },
+        {
+            "path": "../../../libs/detector"
+        },
+        {
+            "path": "../../../libs/utils"
+        },
+        {
+            "path": "../../../libs/connectors"
+        },
+        {
+            "path": "../../../libs/orders"
+        },
+        {
+            "path": "../../../libs/key"
+        },
+        {
+            "path": "../../../libs/plugin-driver"
+        }
     ]
 }

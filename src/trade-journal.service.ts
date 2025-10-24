@@ -8,7 +8,7 @@ import {
     Account,
     Position,
 } from '@barfinex/types';
-import { DetectorPluginService } from '@barfinex/detector/detector-plugin.service';
+import { DetectorPluginService } from '@barfinex/detector';
 
 import { TradeJournalEntity } from './entities/trade-journal.entity';
 import { CreateTradeDto } from './dto/create-trade.dto';
@@ -78,7 +78,7 @@ export class TradeJournalService extends DetectorPluginService {
         const existingPositions = await this.repo.find({
             where: {
                 // studioGuid: ctx.studioGuid,
-                detectorKey: ctx.detectorContext.key,
+                detectorKey: ctx.detectorContext.name,
                 isPosition: true,
             },
         });
@@ -123,7 +123,7 @@ export class TradeJournalService extends DetectorPluginService {
         const existingPositions = await this.repo.find({
             where: {
                 // studioGuid: ctx.studioGuid,
-                detectorKey: ctx.detectorContext.key,
+                detectorKey: ctx.detectorContext.name,
                 isPosition: true,
             },
         });
@@ -194,7 +194,7 @@ export class TradeJournalService extends DetectorPluginService {
         const existing = await this.repo.findOne({
             where: {
                 // studioGuid: ctx.studioGuid,
-                detectorKey: ctx.detectorContext.key,
+                detectorKey: ctx.detectorContext.name,
                 ticker: pos.symbol.name,
                 isPosition: true,
             },
@@ -210,7 +210,7 @@ export class TradeJournalService extends DetectorPluginService {
         } else {
             const trade = this.repo.create({
                 // studioGuid: ctx.studioGuid,
-                detectorKey: ctx.detectorContext.key,
+                detectorKey: ctx.detectorContext.name,
                 detectorInstance: ctx.detectorContext.name,
                 date: new Date().toISOString(),
                 ticker: pos.symbol.name,
