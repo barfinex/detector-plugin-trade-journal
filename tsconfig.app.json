@@ -5,26 +5,29 @@
     "declaration": true,
     "emitDeclarationOnly": false,
     "rootDir": "./src",
-    "outDir": "../../dist/libs/plugin-trade-journal",
-    "tsBuildInfoFile": "../../dist/libs/plugin-trade-journal.tsbuildinfo",
+    "outDir": "./dist",
     "strict": true,
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "node"
-    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false
+    "useDefineForClassFields": false,
+    "incremental": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["node", "reflect-metadata"],
+    "baseUrl": "./",
+    "paths": {
+      "@barfinex/types": ["./node_modules/@barfinex/types"],
+      "@barfinex/utils": ["./node_modules/@barfinex/utils"],
+      "@barfinex/connectors": ["./node_modules/@barfinex/connectors"],
+      "@barfinex/orders": ["./node_modules/@barfinex/orders"],
+      "@barfinex/key": ["./node_modules/@barfinex/key"],
+      "@barfinex/plugin-driver": ["./node_modules/@barfinex/plugin-driver"]
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }
