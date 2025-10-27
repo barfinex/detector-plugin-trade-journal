@@ -1,0 +1,30 @@
+{
+    "extends": "./tsconfig.app.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@barfinex/types": [
+                "./node_modules/@barfinex/types"
+            ],
+            "@barfinex/utils": [
+                "./node_modules/@barfinex/utils"
+            ],
+            "@barfinex/detector": [
+                "./node_modules/@barfinex/detector"
+            ],
+            "@barfinex/connectors": [
+                "./node_modules/@barfinex/connectors"
+            ],
+            "@barfinex/orders": [
+                "./node_modules/@barfinex/orders"
+            ],
+            "@barfinex/key": [
+                "./node_modules/@barfinex/key"
+            ],
+            "@barfinex/plugin-driver": [
+                "./node_modules/@barfinex/plugin-driver"
+            ]
+        }
+    },
+    "references": []
+}
