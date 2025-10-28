@@ -10,6 +10,7 @@ import { FilterTradeDto } from './dto/filter-trade.dto';
 export class TradeJournalController {
     constructor(private readonly service: TradeJournalService) { }
 
+
     @Post()
     @ApiOperation({ summary: 'Создать запись сделки' })
     create(@Body() dto: CreateTradeDto) {
