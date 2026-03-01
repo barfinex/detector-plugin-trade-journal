@@ -1,26 +1,21 @@
 # @barfinex/detector-plugin-trade-journal
 
-**`@barfinex/detector-plugin-trade-journal`** is a plugin within the [Barfinex](https://barfinex.com) ecosystem focused on **trade journaling, performance analytics, and historical tracking of executed strategies**. It provides a structured way to record trades, evaluate strategy outcomes, and generate insights for both discretionary and algorithmic trading.
+**Trade journal plugin** for the [Barfinex](https://barfinex.com) Detector — record and query trades (manual or detector-driven) with metadata, filters, and a persistent store.
+
+Keep a structured log of executions for analysis, compliance, or strategy tuning. The plugin implements detector lifecycle hooks and exposes a CRUD API so Studio or other services can create and query journal entries.
 
 ---
 
-## 🚀 Purpose
+## What it does
 
-The `@barfinex/detector-plugin-trade-journal` package is designed to:
-
-- 📊 Maintain a **journal of all executed trades** (detector‑driven or manual).  
-- 📝 Store **metadata** such as strategy name, symbol, timeframe, risk/reward ratio, and tags.  
-- 📈 Provide **performance metrics** (win rate, average R-multiple, profit factor, etc.).  
-- 🔄 Integrate with detectors, advisors, and connectors for **automatic population of trade logs**.  
-- 📂 Export and share logs for compliance, auditing, or research purposes.  
-
-By centralizing trade tracking, this plugin helps traders and quants analyze outcomes, detect behavioral patterns, and refine strategies.
+- **Trade CRUD** — create, find (with filters), get one, update, remove journal entries via service or controller.
+- **Detector plugin** — implements `PluginHook.onInit` / `onStart` and integrates with `@barfinex/plugin-driver`; registers with Provider for Studio plugin API.
+- **Metadata** — strategy name, symbol, timeframe, side, prices, risk/reward, tags, and timestamps stored in `TradeJournalEntity`.
+- **Filtering** — query by symbol, strategy, date range, and other fields for reports and dashboards.
 
 ---
 
-## 📦 Installation
-
-To install the package, use npm or yarn:
+## Installation
 
 ```sh
 npm install @barfinex/detector-plugin-trade-journal
@@ -34,69 +29,31 @@ yarn add @barfinex/detector-plugin-trade-journal
 
 ---
 
-## 📘 Example Usage
+## What's included
 
-```ts
-import { TradeJournalService } from '@barfinex/detector-plugin-trade-journal';
-
-// Initialize journal service
-const journal = new TradeJournalService();
-
-// Record a trade
-journal.recordTrade({
-  id: 'trade-001',
-  symbol: 'BTCUSDT',
-  strategy: 'volume-follow',
-  side: 'buy',
-  entryPrice: 25000,
-  exitPrice: 26000,
-  risk: 100,
-  reward: 1000,
-  tags: ['trend-following', 'BTC'],
-  timestamp: Date.now(),
-});
-
-// Retrieve performance report
-const report = journal.getPerformanceReport();
-console.log(report);
-```
+| Export | Purpose |
+|--------|--------|
+| `TradeJournalModule` | NestJS module (includes entity and service). |
+| `TradeJournalService` | CRUD and plugin hooks; extends `DetectorPluginService`. |
+| `TradeJournalEntity` | TypeORM entity for persistent trade records. |
 
 ---
 
-## 📚 What's Included
+## Documentation
 
-The `@barfinex/detector-plugin-trade-journal` provides:
-
-- **Trade Logging Service** — records trades, metadata, and results.  
-- **Metrics Engine** — calculates profitability, win/loss ratios, expectancy, and more.  
-- **Integration Hooks** — works seamlessly with detectors and advisors to auto-log trades.  
-- **Export Utilities** — prepare trade logs for reporting or visualization.  
-- **Extensibility** — can be adapted for multi-asset, multi-strategy portfolios.  
+- **Detector (host for this plugin)** — [Installation detector](https://barfinex.com/docs/installation-detector) — config and plugin list (e.g. `trade-journal`).
+- **Barfinex overview** — [First Steps](https://barfinex.com/docs/first-steps), [Architecture](https://barfinex.com/docs/architecture), [Glossary](https://barfinex.com/docs/glossary).
+- **APIs** — [Detector API reference](https://barfinex.com/docs/detector-api), [Provider API reference](https://barfinex.com/docs/provider-api), [Building with the API](https://barfinex.com/docs/frontend-api).
+- **Troubleshooting** — [Typical problems and solutions](https://barfinex.com/docs/troubleshooting).
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-We welcome contributions to help improve the **Barfinex open trading stack**:
-
-- 🛠 Open an issue or submit a PR.  
-- 💡 Suggest new metrics or analytics features.  
-- 💬 Share research use cases or insights.  
-
-Join the conversation in our Telegram community: [t.me/barfinex](https://t.me/barfinex)
+Ideas for metrics and export features welcome. Open an issue or PR. Community: [Telegram](https://t.me/barfinex) · [GitHub](https://github.com/barfinex).
 
 ---
 
-## 📜 License
+## License
 
-This repository is licensed under the [Apache License 2.0](LICENSE) with additional restrictions.
-
-### Key Terms:
-1. **Attribution**: Proper credit must be given to the original author, Barfin Network Limited, with a link to the official website: [https://barfinex.com/](https://barfinex.com/).  
-2. **Non-Commercial Use**: The use of this codebase for commercial purposes is prohibited without explicit written permission.  
-3. **Display Requirements**: For non-commercial use, the following must be displayed:  
-   - The name "Barfin Network Limited".  
-   - The official logo.  
-   - A working link to [https://barfinex.com/](https://barfinex.com/).  
-
-For further details or to request commercial use permissions, contact **Barfin Network Limited** through the official website.  
+Licensed under the [Apache License 2.0](LICENSE) with additional terms. Attribution to **Barfin Network Limited** and a link to [https://barfinex.com](https://barfinex.com) are required. Commercial use requires explicit permission. See [LICENSE](LICENSE) and the [Barfinex site](https://barfinex.com) for details.
