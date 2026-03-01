@@ -1,3 +1,5 @@
+import * as path from 'path';
+import * as fs from 'fs';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TradeJournalEntity } from './entities/trade-journal.entity';
@@ -15,8 +17,28 @@ export const TRADE_JOURNAL_PLUGIN_META: PluginMeta = {
     pluginApi: '/plugins-api/builtin-trade-journal',
 };
 
+/** Локальная SQLite — один файл рядом с приложением, без отдельного сервера */
+const sqliteForRoot = TypeOrmModule.forRootAsync({
+    useFactory: () => {
+        const dbPath =
+            process.env.TRADE_JOURNAL_DB_PATH ||
+            path.join(process.cwd(), 'data', 'trade-journal.db');
+        const dir = path.dirname(dbPath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        return {
+            type: 'sqlite',
+            database: dbPath,
+            autoLoadEntities: true,
+            synchronize: true,
+        };
+    },
+});
+
 @Module({
-    imports: [TypeOrmModule.forFeature([TradeJournalEntity])],
+    imports: [
+        sqliteForRoot,
+        TypeOrmModule.forFeature([TradeJournalEntity]),
+    ],
     providers: [
         TradeJournalService,
         {

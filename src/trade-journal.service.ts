@@ -170,7 +170,7 @@ export class TradeJournalService extends DetectorPluginService {
     }
 
     async findOne(id: string): Promise<TradeJournalEntity> {
-        const trade = await this.repo.findOne({ where: { _id: id } });
+        const trade = await this.repo.findOne({ where: { id } });
         if (!trade) throw new NotFoundException(`Trade ${id} not found`);
         return trade;
     }

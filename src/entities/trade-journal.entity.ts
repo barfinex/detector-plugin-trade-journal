@@ -1,11 +1,11 @@
-import { Entity, ObjectIdColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('trade_journal')
 export class TradeJournalEntity {
-    @ObjectIdColumn()
-    @ApiProperty({ description: 'Mongo ObjectId' })
-    _id: string;
+    @PrimaryGeneratedColumn('uuid')
+    @ApiProperty({ description: 'Уникальный ID записи' })
+    id: string;
 
     @Column()
     @ApiProperty({ description: 'GUID плагина (studioGuid)' })
