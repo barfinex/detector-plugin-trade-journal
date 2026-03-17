@@ -1,32 +1,26 @@
 {
-    "extends": "./tsconfig.app.json",
-    "compilerOptions": {
-        "composite": true
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../../detector"
     },
-    "include": [
-        "src"
-    ],
-    "references": [
-        {
-            "path": "../../../libs/types"
-        },
-        {
-            "path": "../../../libs/detector"
-        },
-        {
-            "path": "../../../libs/utils"
-        },
-        {
-            "path": "../../../libs/connectors"
-        },
-        {
-            "path": "../../../libs/orders"
-        },
-        {
-            "path": "../../../libs/key"
-        },
-        {
-            "path": "../../../libs/plugin-driver"
-        }
-    ]
+    {
+      "path": "../../types"
+    }
+  ]
 }
